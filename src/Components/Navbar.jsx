@@ -9,57 +9,75 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
-
-const navLinkClass = ({ isActive }) =>
-  isActive
-    ? "text-green-600 font-semibold border-b-2 border-green-600"
-    : "text-gray-700 dark:text-gray-200 hover:text-green-600";  
+  const navLinkClass = ({ isActive }) =>
+    isActive
+      ? "text-green-600 font-semibold border-b-2 border-green-600"
+      : "text-gray-700 dark:text-gray-200 hover:text-green-600";
 
   const links = (
     <>
-      <NavLink to="/" className= {navLinkClass}>
+      <NavLink to="/" className={navLinkClass}>
         Home
       </NavLink>
       <NavLink to="/all-issues" className={navLinkClass}>
         All Issues
       </NavLink>
-      {
-        user && <>
-        <NavLink to="/add-issue" className={navLinkClass}>
-        Add Issue
-      </NavLink>
-      <NavLink to="/my-issues" className={navLinkClass}>
-        My Issues
-      </NavLink>
-      <NavLink to="/my-contributions" className={navLinkClass}>
-        My Contribution
-      </NavLink>
+      {user && (
+        <>
+          <NavLink to="/add-issue" className={navLinkClass}>
+            Add Issue
+          </NavLink>
+          <NavLink to="/my-issues" className={navLinkClass}>
+            My Issues
+          </NavLink>
+          <NavLink to="/my-contributions" className={navLinkClass}>
+            My Contribution
+          </NavLink>
         </>
-      }
+      )}
     </>
   );
+
+  const formatName = (name) => {
+    if (!name) return "";
+    return name
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => console.log("User logged out"))
+      .catch((err) => console.error(err));
+  };
 
   const authButtons = user ? (
     <div className="relative">
       <img
-        src={
-          user.photoURL || "https://i.ibb.co/9nQn3kJ/default-avatar.png"
-        }
+        src={user.photoURL || "https://i.ibb.co/9nQn3kJ/default-avatar.png"}
         alt="user avatar"
         className="w-9 h-9 rounded-full cursor-pointer border-2 border-green-500"
         onClick={() => setShowDropdown(!showDropdown)}
       />
       {showDropdown && (
-        <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg text-sm">
+        <div className="absolute -right-15 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg text-sm">
           <p className="px-3 py-2 text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700">
-            {user.displayName || "User"}
+            {
+              <div>
+                <p>{formatName(user.displayName) || "User"}</p>
+                <p>{user.email}</p>
+              </div>
+            }
           </p>
-          <button
-            // onClick={handleLogout}
-            className="w-full text-left px-3 py-2 hover:bg-green-100 dark:hover:bg-green-900 text-red-600 dark:text-red-400"
-          >
-            Logout
-          </button>
+          <div className="flex justify-center items-center mb-2">
+            <button
+              onClick={handleLogout}
+              className="w-1/2 mx-auto px-4 py-1 border border-green-600 rounded hover:bg-green-600 hover:text-white"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       )}
     </div>
