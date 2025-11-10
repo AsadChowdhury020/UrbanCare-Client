@@ -18,11 +18,11 @@ const CategoryFilterSection = () => {
   useEffect(() => {
     const fetchIssues = async () => {
       try {
-        const res = await fetch("http://localhost:3000/issues"); 
+        const res = await fetch("http://localhost:3000/issues");
         const data = await res.json();
-        const formattedData = data.map(issue => ({
+        const formattedData = data.map((issue) => ({
           ...issue,
-          date: new Date(issue.date)
+          date: new Date(issue.date),
         }));
 
         setIssues(formattedData);
@@ -39,14 +39,14 @@ const CategoryFilterSection = () => {
   const filteredIssues =
     activeCategory === "All"
       ? issues
-      : issues.filter(issue => issue.category === activeCategory);
+      : issues.filter((issue) => issue.category === activeCategory);
 
   if (loading) {
-    return <LoadingSpinner></LoadingSpinner>
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (
-    <div className="my-10 px-4">
+    <div className="my-10 px-4 py-3 bg-gray-100 rounded-xl">
       {/* Category Buttons */}
       <div className="flex justify-center gap-5 mb-10 flex-wrap">
         <button
@@ -60,25 +60,27 @@ const CategoryFilterSection = () => {
           All Issues
         </button>
 
-        {categories.map(category => (
-          <button
-            key={category}
-            className={`px-4 py-2 rounded ${
-              activeCategory === category
-                ? "bg-green-600 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-            onClick={() => setActiveCategory(category)}
-          >
-            {category}
-          </button>
-        ))}
+        <div className="px-4 py-3">
+          {categories.map((category) => (
+            <button
+              key={category}
+              className={`px-4 py-2 rounded ${
+                activeCategory === category
+                  ? "bg-green-600 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+              onClick={() => setActiveCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Issues Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {filteredIssues.length > 0 ? (
-          filteredIssues.map(issue => ( <IssueCard issue={issue}></IssueCard>))
+          filteredIssues.map((issue) => <IssueCard issue={issue}></IssueCard>)
         ) : (
           <p className="col-span-full text-center text-gray-500">
             No issues found in this category.

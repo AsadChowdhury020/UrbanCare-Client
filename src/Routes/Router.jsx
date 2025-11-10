@@ -12,12 +12,13 @@ import IssueDetails from "../Pages/IssueDetails";
 import AddIssue from "../Pages/AddIssue";
 import MyIssues from "../Pages/MyIssues";
 import MyContributions from "../Pages/MyContributions";
+import NotFound from "../Pages/NotFound";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayouts,
-    // Component: LoadingSpinner,
+    // Component: NotFound,
     children: [
       {
         path: "/",
@@ -79,4 +80,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path : '*',
+    Component : NotFound
+  }
 ]);
