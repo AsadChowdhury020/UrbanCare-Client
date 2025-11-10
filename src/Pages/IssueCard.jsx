@@ -1,8 +1,9 @@
 import React from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { Link } from "react-router";
 
 const IssueCard = ({ issue }) => {
-  const { title, category, location, image, amount, status } = issue;
+  const { _id, title, category, location, image, amount, status } = issue;
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 ">
@@ -41,9 +42,9 @@ const IssueCard = ({ issue }) => {
           <p className="text-sm font-semibold text-green-700 dark:text-green-400">
             💰 Budget: ${amount}
           </p>
-          <button className="px-4 py-1.5 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition">
+          <Link to={`/issue/${_id}`} className="px-4 py-1.5 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition">
             See Details
-          </button>
+          </Link>
         </div>
       </div>
     </div>

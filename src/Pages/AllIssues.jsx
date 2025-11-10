@@ -21,7 +21,7 @@ const AllIssues = () => {
   }
 
   return (
-    <div className=" bg-gray-100 px-10 py-3">
+    <div className=" bg-gray-100 px-10 py-3 rounded-xl">
       <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white my-10 ">
         All <span className="text-green-600">Issues</span>
       </h2>

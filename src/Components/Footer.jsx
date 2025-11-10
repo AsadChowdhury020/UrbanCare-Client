@@ -5,7 +5,7 @@ import { MdOutlineEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 px-10 py-3 mt-10">
+    <footer className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 px-10 py-3 mt-10 rounded-xl">
       <div className="px-5 grid grid-cols-1 md:grid-cols-3 gap-8">
 
         {/*Logo & Short Description */}

@@ -6,22 +6,37 @@ import AllIssues from "../Pages/AllIssues";
 import AuthenticationLayout from "../Layouts/AuthenticationLayout";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
-
+import Hero from "../Components/Hero";
+import PrivateRoute from "./PriveteRoute";
+import IssueDetails from "../Pages/IssueDetails";
 
 export const router = createBrowserRouter([
-  { path: "/", 
+  {
+    path: "/",
     Component: MainLayouts,
     // Component: LoadingSpinner,
-    children : [
+    children: [
+      {
+        path: "/",
+        Component: Home,
+      },
+      {
+        path: "/all-issues",
+        Component: AllIssues,
+      },
         {
-            path : '/',
-            Component : Home
-        }, 
-        {
-          path : '/all-issues',
-          Component : AllIssues
-        }
-    ]
+    path: "/issue/:id",
+    element: (
+      <PrivateRoute>
+        <IssueDetails />
+      </PrivateRoute>
+    ),
+  },
+    ],
+  },
+  {
+    path: "/hero",
+    Component: Hero,
   },
   {
     path: "/auth",
