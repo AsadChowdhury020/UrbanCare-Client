@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import LoadingSpinner from '../Components/LoadingSpinner';
-import IssueCard from './IssueCard';
+import React, { useEffect, useState } from "react";
+import LoadingSpinner from "../Components/LoadingSpinner";
+import IssueCard from "./IssueCard";
 
 const RecentIssues = () => {
-    const [issues, setIssues] = useState([])
-    const [loading, setLoading] = useState(true)
+  const [issues, setIssues] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetch('http://localhost:3000/recent-issues')
-         .then(response => response.json())
-         .then(data => {
-            // console.log(data)
-            setIssues(data)
-            setLoading(false)
-         })
-    }, [])
+  useEffect(() => {
+    fetch("http://localhost:3000/recent-issues")
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data)
+        setIssues(data);
+        setLoading(false);
+      });
+  }, []);
 
-      if (loading) {
+  if (loading) {
     return <LoadingSpinner></LoadingSpinner>;
   }
-    return (
-        <div>
+  return (
+    <div className="bg-gray-100">
       <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white my-10">
         Recent <span className="text-green-600">Issues</span>
       </h2>
@@ -30,7 +30,7 @@ const RecentIssues = () => {
         ))}
       </div>
     </div>
-    );
+  );
 };
 
 export default RecentIssues;

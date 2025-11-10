@@ -2,11 +2,9 @@ import React from "react";
 import Navbar from "../Components/Navbar";
 import { Outlet } from "react-router";
 import Footer from "../Components/Footer";
-import AllIssues from "../Pages/AllIssues";
-import RecentIssues from "../Pages/RecentIssues";
 import { Toaster } from "react-hot-toast";
 
-const MainLayouts = () => {
+const AuthenticationLayout = () => {
   return (
     <div>
       <header className="w-11/12 mx-auto my-5">
@@ -23,4 +21,4 @@ const MainLayouts = () => {
   );
 };
 
-export default MainLayouts;
+export default AuthenticationLayout;

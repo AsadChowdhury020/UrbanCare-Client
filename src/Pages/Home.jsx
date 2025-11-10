@@ -1,10 +1,11 @@
 import React from 'react';
+import RecentIssues from './RecentIssues';
 
 const Home = () => {
     
     return (
         <div>
-            Home
+            <RecentIssues></RecentIssues>
         </div>
     );
 };

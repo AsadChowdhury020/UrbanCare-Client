@@ -5,7 +5,7 @@ const IssueCard = ({ issue }) => {
   const { title, category, location, image, amount, status } = issue;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden border border-gray-100 dark:border-gray-700">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 ">
       <img
         src={image}
         alt={title}
