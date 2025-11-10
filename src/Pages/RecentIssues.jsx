@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import IssueCard from "./IssueCard";
+import { Helmet } from "react-helmet";
 
 const RecentIssues = () => {
   const [issues, setIssues] = useState([]);
@@ -21,6 +22,9 @@ const RecentIssues = () => {
   }
   return (
     <div className="bg-gray-100  px-3 md:px-6 lg:px-10 py-3 rounded-xl">
+            <Helmet>
+        <title>Recent Issues | UrbanCare Portal</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white my-10">
         Recent <span className="text-green-600">Issues</span>
       </h2>

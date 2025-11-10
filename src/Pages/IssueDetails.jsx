@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthContext";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { Helmet } from "react-helmet";
 
 const IssueDetails = () => {
   const { id } = useParams();
@@ -106,7 +107,11 @@ const IssueDetails = () => {
             <button
               onClick={() => navigate(-1)}
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md flex items-center"
-            > <IoMdArrowRoundBack />Back</button>
+            >
+              {" "}
+              <IoMdArrowRoundBack />
+              Back
+            </button>
             <button
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md"
               onClick={handleContributionsModalOpen}
@@ -191,7 +196,10 @@ const IssueDetails = () => {
       </dialog>
 
       {/* Contributors Table */}
-      <div className="bg-white shadow-md rounded-lg mt-10 p-6 overflow-x-auto">
+      <div className="bg-gray-100 shadow-md rounded-xl mt-10 p-6 overflow-x-auto">
+        <Helmet>
+          <title>Issue Details| UrbanCare Portal</title>
+        </Helmet>
         <h3 className="text-3xl font-semibold mb-4 text-green-700">
           Contributors
         </h3>

@@ -9,6 +9,8 @@ import Register from "../Pages/Register";
 import Hero from "../Components/Hero";
 import PrivateRoute from "./PriveteRoute";
 import IssueDetails from "../Pages/IssueDetails";
+import AddIssue from "../Pages/AddIssue";
+import MyIssues from "../Pages/MyIssues";
 
 export const router = createBrowserRouter([
   {
@@ -24,14 +26,30 @@ export const router = createBrowserRouter([
         path: "/all-issues",
         Component: AllIssues,
       },
-        {
-    path: "/issue/:id",
-    element: (
-      <PrivateRoute>
-        <IssueDetails />
-      </PrivateRoute>
-    ),
-  },
+      {
+        path: "/issue/:id",
+        element: (
+          <PrivateRoute>
+            <IssueDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/add-issue",
+        element: (
+          <PrivateRoute>
+            <AddIssue />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-issues",
+        element: (
+          <PrivateRoute>
+            <MyIssues />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
