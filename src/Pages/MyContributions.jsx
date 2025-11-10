@@ -3,6 +3,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { AuthContext } from "../Context/AuthContext";
 import LoadingSpinner from "../Components/LoadingSpinner";
+import { Helmet } from "react-helmet";
 
 const MyContributions = () => {
   const { user } = useContext(AuthContext);
@@ -52,7 +53,7 @@ const MyContributions = () => {
       ["Date", new Date(contribution.date).toLocaleDateString()],
     ];
 
-    console.log(tableData)
+    console.log(tableData);
 
     doc.autoTable({
       startY: 30,
@@ -69,6 +70,9 @@ const MyContributions = () => {
 
   return (
     <div className="px-4 py-10 w-11/12 mx-auto">
+      <Helmet>
+        <title>My Contributions | UrbanCare Portal</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">
         My <span className="text-green-600">Contributions</span>
       </h2>

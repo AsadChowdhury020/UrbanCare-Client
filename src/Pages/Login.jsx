@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthContext";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { SigninUser, signInWithGoogle } = useContext(AuthContext);
@@ -55,7 +56,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 rounded-xl">
+            <Helmet>
+        <title>Login | UrbanCare Portal</title>
+      </Helmet>
       <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6 text-green-700">
           Login to UrbanClean

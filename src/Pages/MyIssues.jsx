@@ -14,6 +14,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import IssueCard from "./IssueCard";
+import { Helmet } from "react-helmet";
 
 const MyIssues = () => {
   const { user } = useContext(AuthContext);
@@ -36,11 +37,14 @@ const MyIssues = () => {
   }, [user?.email]);
 
   if (loading) {
-    return <LoadingSpinner></LoadingSpinner>
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (
     <div className="px-4 py-10 max-w-6xl mx-auto">
+      <Helmet>
+        <title>My Issues | UrbanCare Portal</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">
         My <span className="text-green-600">Issues</span>
       </h2>

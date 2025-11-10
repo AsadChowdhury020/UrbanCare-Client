@@ -76,6 +76,9 @@ const IssueDetails = () => {
   }
   return (
     <div className="w-11/12 mx-auto">
+      <Helmet>
+        <title>Issue Details | UrbanCare Portal</title>
+      </Helmet>
       {/* Issue Details */}
       <div className="bg-white shadow-xl rounded-2xl overflow-hidden">
         <img

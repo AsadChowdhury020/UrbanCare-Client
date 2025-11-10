@@ -20,9 +20,9 @@ const AddIssue = () => {
       description: form.description.value,
       image: form.image.value,
       amount: parseFloat(form.amount.value),
-      status: "ongoing", 
+      status: "ongoing",
       date: new Date(),
-      email: user?.email, 
+      email: user?.email,
     };
 
     fetch("http://localhost:3000/issues", {
@@ -52,7 +52,7 @@ const AddIssue = () => {
   };
 
   if (loading) {
-    return <LoadingSpinner></LoadingSpinner>
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (
@@ -93,7 +93,9 @@ const AddIssue = () => {
             <option value="">Select category</option>
             <option value="Garbage">Garbage</option>
             <option value="Illegal Construction">Illegal Construction</option>
-            <option value="Broken Public Property">Broken Public Property</option>
+            <option value="Broken Public Property">
+              Broken Public Property
+            </option>
             <option value="Road Damage">Road Damage</option>
           </select>
         </div>
