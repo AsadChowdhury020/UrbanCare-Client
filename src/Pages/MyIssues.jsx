@@ -27,7 +27,7 @@ const MyIssues = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="px-4 py-10 max-w-6xl mx-auto">
+    <div className="px-4 py-10 rounded-xl bg-gray-100 dark:bg-gray-900 transition-colors">
       <Helmet>
         <title>My Issues | UrbanCare Portal</title>
       </Helmet>

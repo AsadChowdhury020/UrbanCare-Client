@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthContext";
 import { Helmet } from "react-helmet";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { createUser, updateUser, signInWithGoogle } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // toggle state
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
@@ -18,11 +20,23 @@ const Register = () => {
     const password = form.password.value;
 
     if (password.length < 6)
-      return Swal.fire("Error", "Password must be at least 6 characters", "error");
+      return Swal.fire(
+        "Error",
+        "Password must be at least 6 characters",
+        "error"
+      );
     if (!/[A-Z]/.test(password))
-      return Swal.fire("Error", "Password must contain an uppercase letter", "error");
+      return Swal.fire(
+        "Error",
+        "Password must contain an uppercase letter",
+        "error"
+      );
     if (!/[a-z]/.test(password))
-      return Swal.fire("Error", "Password must contain a lowercase letter", "error");
+      return Swal.fire(
+        "Error",
+        "Password must contain a lowercase letter",
+        "error"
+      );
 
     setLoading(true);
     createUser(email, password)
@@ -59,25 +73,53 @@ const Register = () => {
       <Helmet>
         <title>Register | UrbanCare Portal</title>
       </Helmet>
-      <div className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8 w-full max-w-md transition-all ">
+      <div className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8 w-full max-w-md transition-all">
         <h2 className="text-2xl font-bold text-center mb-6 text-green-700 dark:text-green-400">
           Register Account
         </h2>
         <form onSubmit={handleRegister} className="space-y-4">
-          {["name", "email", "photoURL", "password"].map((field) => (
+          {/* Name */}
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            required
+            className="w-full border dark:border-gray-600 p-3 rounded-md bg-transparent dark:text-white focus:outline-green-500"
+          />
+          {/* Email */}
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            className="w-full border dark:border-gray-600 p-3 rounded-md bg-transparent dark:text-white focus:outline-green-500"
+          />
+          {/* Photo URL */}
+          <input
+            type="text"
+            name="photoURL"
+            placeholder="Photo URL"
+            required
+            className="w-full border dark:border-gray-600 p-3 rounded-md bg-transparent dark:text-white focus:outline-green-500"
+          />
+
+          {/* Password with Eye Toggle */}
+          <div className="relative">
             <input
-              key={field}
-              type={field === "password" ? "password" : "text"}
-              name={field}
-              placeholder={
-                field === "photoURL"
-                  ? "Photo URL"
-                  : field.charAt(0).toUpperCase() + field.slice(1)
-              }
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
               required
-              className="w-full border dark:border-gray-600 p-3 rounded-md bg-transparent dark:text-white focus:outline-green-500"
+              className="w-full border dark:border-gray-600 p-3 rounded-md bg-transparent dark:text-white focus:outline-green-500 pr-10"
             />
-          ))}
+            <span
+              className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500 dark:text-gray-300"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+
           <button
             type="submit"
             disabled={loading}

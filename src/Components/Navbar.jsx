@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { AuthContext } from "../Context/AuthContext";
@@ -8,6 +8,18 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+   useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
 
   const navLinkClass = ({ isActive }) =>
     isActive
@@ -115,7 +127,17 @@ const Navbar = () => {
         </div>
 
         {/* Right Side Auth */}
-        <div className="hidden md:flex items-center gap-4">{authButtons}</div>
+        <div className="hidden md:flex items-center gap-4">
+          {authButtons}
+
+          {/* Theme toggling button  */}
+          <input
+             onChange={(e) => handleTheme(e.target.checked)}
+            type="checkbox"
+            defaultChecked={localStorage.getItem("theme") === "dark"}
+            className="toggle"
+          />
+        </div>
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">

@@ -16,7 +16,6 @@ const IssueDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch the issue by ID
     fetch(`http://localhost:3000/issues/${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -25,7 +24,6 @@ const IssueDetails = () => {
       })
       .catch((err) => console.error(err));
 
-    // Fetch contributors related to this issue
     fetch(`http://localhost:3000/contributions?issueId=${id}`)
       .then((res) => res.json())
       .then((data) => setContributors(data))
@@ -62,36 +60,32 @@ const IssueDetails = () => {
         });
         form.reset();
         contributionModalRef.current.close();
-        setContributors((previous) => [...previous, contribution]);
+        setContributors((prev) => [...prev, contribution]);
       })
-      .catch((err) => {
-        Swal.fire("Error", err.message, "error");
-      });
+      .catch((err) => Swal.fire("Error", err.message, "error"));
   };
 
   const handleContributionsModalOpen = () => {
     contributionModalRef.current.showModal();
   };
 
-  if (loading) {
-    return <LoadingSpinner />;
-  }
+  if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="w-11/12 mx-auto my-10">
+    <div className="bg-gray-100 dark:bg-gray-900 my-10 px-5 py-5 rounded-xl transition-colors">
       <Helmet>
         <title>Issue Details | UrbanCare Portal</title>
       </Helmet>
 
       {/* Issue Details Card */}
-      <div className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 transition-colors">
         <img
           src={issue.image}
           alt={issue.title}
           className="w-full h-72 object-cover"
         />
         <div className="p-6 space-y-4">
-          <h2 className="text-3xl font-bold text-green-700 mb-2">
+          <h2 className="text-3xl font-bold text-green-700 dark:text-green-400 mb-2">
             {issue.title}
           </h2>
           <p className="text-gray-600 dark:text-gray-300">
@@ -105,12 +99,12 @@ const IssueDetails = () => {
             Suggested Fix Budget:{" "}
             <span className="text-green-600">${issue.amount}</span>
           </p>
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-gray-400">
             Date Reported: {new Date(issue.date).toLocaleDateString("en-GB")}
           </p>
 
           {/* Buttons */}
-          <div className="mt-6 flex justify-between items-center">
+          <div className="mt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
             <button
               onClick={() => navigate(-1)}
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md flex items-center gap-2 transition"
@@ -128,16 +122,20 @@ const IssueDetails = () => {
         </div>
       </div>
 
-      {/* Modal for Contribution */}
-      <dialog id="payModal" className="modal" ref={contributionModalRef}>
-        <div className="modal-box max-w-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-xl shadow-lg">
+      {/* Contribution Modal */}
+      <dialog
+        id="payModal"
+        className="modal"
+        ref={contributionModalRef}
+      >
+        <div className="modal-box max-w-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-xl shadow-lg transition-colors">
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-3 top-3">
               ✕
             </button>
           </form>
 
-          <h3 className="text-2xl font-bold mb-4 text-green-700">
+          <h3 className="text-2xl font-bold mb-4 text-green-700 dark:text-green-400">
             Pay Clean-Up Contribution
           </h3>
 
@@ -154,7 +152,7 @@ const IssueDetails = () => {
               name="amount"
               placeholder="Amount ($)"
               required
-              className="w-full border p-2 rounded-md"
+              className="w-full border p-2 rounded-md bg-transparent dark:bg-gray-700 dark:text-white"
             />
             <input
               type="text"
@@ -162,7 +160,7 @@ const IssueDetails = () => {
               placeholder="Your Name"
               defaultValue={user?.displayName}
               required
-              className="w-full border p-2 rounded-md"
+              className="w-full border p-2 rounded-md bg-transparent dark:bg-gray-700 dark:text-white"
             />
             <input
               type="email"
@@ -177,19 +175,19 @@ const IssueDetails = () => {
               name="phone"
               placeholder="Phone Number"
               required
-              className="w-full border p-2 rounded-md"
+              className="w-full border p-2 rounded-md bg-transparent dark:bg-gray-700 dark:text-white"
             />
             <input
               type="text"
               name="address"
               placeholder="Address"
               required
-              className="w-full border p-2 rounded-md"
+              className="w-full border p-2 rounded-md bg-transparent dark:bg-gray-700 dark:text-white"
             />
             <textarea
               name="info"
               placeholder="Additional Info (optional)"
-              className="w-full border p-2 rounded-md"
+              className="w-full border p-2 rounded-md bg-transparent dark:bg-gray-700 dark:text-white"
             ></textarea>
             <button
               type="submit"
@@ -202,15 +200,17 @@ const IssueDetails = () => {
       </dialog>
 
       {/* Contributors Table */}
-      <div className="bg-white dark:bg-gray-800 shadow-md rounded-xl mt-10 p-6 overflow-x-auto border border-gray-200 dark:border-gray-700">
-        <h3 className="text-3xl font-semibold mb-4 text-green-700">
+      <div className="bg-white dark:bg-gray-800 shadow-md rounded-xl mt-10 p-6 overflow-x-auto border border-gray-200 dark:border-gray-700 transition-colors">
+        <h3 className="text-3xl font-semibold mb-4 text-green-700 dark:text-green-400">
           Contributors
         </h3>
         {contributors.length === 0 ? (
-          <p className="text-gray-500 text-center">No contributions yet.</p>
+          <p className="text-gray-500 dark:text-gray-400 text-center">
+            No contributions yet.
+          </p>
         ) : (
-          <table className="table w-full border">
-            <thead className="bg-green-100 dark:bg-green-900">
+          <table className="table w-full border-collapse border border-gray-300 dark:border-gray-600">
+            <thead className="bg-green-100 dark:bg-green-900 text-gray-800 dark:text-gray-100">
               <tr>
                 <th>#</th>
                 <th>Name</th>
@@ -220,7 +220,7 @@ const IssueDetails = () => {
             </thead>
             <tbody>
               {contributors.map((c, i) => (
-                <tr key={c._id}>
+                <tr key={i} className="text-gray-800 dark:text-gray-200">
                   <td>{i + 1}</td>
                   <td>{c.name}</td>
                   <td>${c.amount}</td>
@@ -236,3 +236,4 @@ const IssueDetails = () => {
 };
 
 export default IssueDetails;
+
