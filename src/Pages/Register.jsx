@@ -17,16 +17,12 @@ const Register = () => {
     const photoURL = form.photoURL.value;
     const password = form.password.value;
 
-    // Password validation
-    if (password.length < 6) {
+    if (password.length < 6)
       return Swal.fire("Error", "Password must be at least 6 characters", "error");
-    }
-    if (!/[A-Z]/.test(password)) {
+    if (!/[A-Z]/.test(password))
       return Swal.fire("Error", "Password must contain an uppercase letter", "error");
-    }
-    if (!/[a-z]/.test(password)) {
+    if (!/[a-z]/.test(password))
       return Swal.fire("Error", "Password must contain a lowercase letter", "error");
-    }
 
     setLoading(true);
     createUser(email, password)
@@ -38,13 +34,10 @@ const Register = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        setLoading(false);
         navigate("/");
       })
-      .catch((err) => {
-        setLoading(false);
-        Swal.fire("Error", err.message, "error");
-      });
+      .catch((err) => Swal.fire("Error", err.message, "error"))
+      .finally(() => setLoading(false));
   };
 
   const handleGoogle = () => {
@@ -62,43 +55,29 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 rounded-xl">
-              <Helmet>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4 transition-all rounded-xl">
+      <Helmet>
         <title>Register | UrbanCare Portal</title>
       </Helmet>
-      <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-6 text-green-700">
+      <div className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8 w-full max-w-md transition-all ">
+        <h2 className="text-2xl font-bold text-center mb-6 text-green-700 dark:text-green-400">
           Register Account
         </h2>
         <form onSubmit={handleRegister} className="space-y-4">
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            required
-            className="w-full border p-3 rounded-md focus:outline-green-500"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-            className="w-full border p-3 rounded-md focus:outline-green-500"
-          />
-          <input
-            type="text"
-            name="photoURL"
-            placeholder="Photo URL"
-            required
-            className="w-full border p-3 rounded-md focus:outline-green-500"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-            className="w-full border p-3 rounded-md focus:outline-green-500"
-          />
+          {["name", "email", "photoURL", "password"].map((field) => (
+            <input
+              key={field}
+              type={field === "password" ? "password" : "text"}
+              name={field}
+              placeholder={
+                field === "photoURL"
+                  ? "Photo URL"
+                  : field.charAt(0).toUpperCase() + field.slice(1)
+              }
+              required
+              className="w-full border dark:border-gray-600 p-3 rounded-md bg-transparent dark:text-white focus:outline-green-500"
+            />
+          ))}
           <button
             type="submit"
             disabled={loading}
@@ -117,10 +96,10 @@ const Register = () => {
           </p>
         </div>
 
-        <div className="divider my-4">or</div>
+        <div className="divider my-4 text-gray-400">or</div>
         <button
           onClick={handleGoogle}
-          className="w-full border border-gray-300 py-3 rounded-md flex items-center justify-center gap-2 hover:bg-gray-100"
+          className="w-full border border-gray-300 dark:border-gray-600 py-3 rounded-md flex items-center justify-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-700"
         >
           <img
             src="https://www.svgrepo.com/show/355037/google.svg"

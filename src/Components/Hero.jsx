@@ -48,7 +48,7 @@ const Hero = () => {
     },
   ];
   return (
-    <div>
+    <div className="">
       <Slider slides={slides}></Slider>
     </div>
   );

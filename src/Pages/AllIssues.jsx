@@ -11,28 +11,29 @@ const AllIssues = () => {
     fetch("http://localhost:3000/issues")
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
         setIssues(data);
         setLoading(false);
       });
   }, []);
 
-  if (loading) {
-    return <LoadingSpinner></LoadingSpinner>;
-  }
+  if (loading) return <LoadingSpinner />;
 
   return (
-    <div className=" bg-gray-100 px-10 py-3 rounded-xl">
+    <div className="bg-gray-100 my-10">
       <Helmet>
         <title>All Issues | UrbanCare Portal</title>
       </Helmet>
-      <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white my-10 ">
-        All <span className="text-green-600">Issues</span>
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-4 py-3">
-        {issues.map((issue) => (
-          <IssueCard key={issue._id} issue={issue}></IssueCard>
-        ))}
+
+      <div className="bg-white px-8 py-6 rounded-xl shadow-md">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+          All <span className="text-green-600">Issues</span>
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {issues.map((issue) => (
+            <IssueCard key={issue._id} issue={issue} />
+          ))}
+        </div>
       </div>
     </div>
   );
