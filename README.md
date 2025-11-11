@@ -1,16 +1,60 @@
-# React + Vite
+# UrbanCare - Community Cleanliness & Issue Reporting Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Project Purpose  
+The **Community Cleanliness & Issue Reporting Portal** is a full-stack **MERN** web application that empowers users to report, track, and contribute to resolving local environmental and cleanliness-related issues. It promotes community-driven participation to maintain a cleaner, greener environment.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Live Site URL  
+  [Live Client URL](https://your-client-live-site.netlify.app)  
+  [Live Server URL](https://your-server-live.vercel.app)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+#Key Features  
 
-## Expanding the ESLint configuration
+- **Report Local Issues** — Users can easily submit cleanliness-related complaints such as garbage overflow, road damage, or illegal dumping.  
+- **Secure Authentication** — Firebase authentication (Email & Google login) ensures safe and private access to user-specific features.  
+- **Community Contributions** — Users can make payments to support clean-up drives and download contribution receipts as PDF reports.  
+- **Personalized Dashboards** — “My Issues” and “My Contributions” pages show user-specific reports and transactions.  
+- **Modern UI/UX** — Built with Tailwind CSS, SweetAlert, and dynamic routing for a responsive and clean interface.  
+- **Real-time CRUD Operations** — Full integration with MongoDB for real-time data updates and secure API endpoints.  
+- **Dark/Light Mode Support** — Toggle between light and dark themes for better user experience.  
+- **Community Stats & Volunteer Section** — Highlights community engagement and encourages users to join clean-up initiatives.  
+- **404 & Loading States** — Includes proper loading spinners and error handling for smooth navigation.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+# Tech Stack  
+
+**Frontend:** React.js, Tailwind CSS, React Router, Firebase Auth, Axios  
+**Backend:** Node.js, Express.js, MongoDB, Mongoose  
+**Hosting:** Netlify (Client) & Vercel (Server)
+
+---
+
+# NPM Packages Used  
+
+#### Frontend  
+- `react-router` — Client-side routing  
+- `firebase` — Authentication system  
+- `axios` — API communication  
+- `sweetalert2` — Success/Error alerts  
+- `react-hook-form` — Form handling and validation  
+- `react-icons` — Icon library  
+- `jspdf` & `jspdf-autotable` — PDF download for contribution reports  
+
+#### Backend  
+- `express` — Backend framework  
+- `mongodb` — Database handling  
+- `cors` — Cross-origin resource sharing  
+- `dotenv` — Environment variable management  
+
+---
+
+# Developer Instructions  
+
+1. Clone both repositories:
+   ```bash
+   git clone https://github.com/yourusername/community-cleanliness-client.git
+   git clone https://github.com/yourusername/community-cleanliness-server.git
