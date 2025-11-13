@@ -7,7 +7,7 @@ import AuthenticationLayout from "../Layouts/AuthenticationLayout";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Hero from "../Components/Hero";
-import PrivateRoute from "./PriveteRoute";
+import PrivateRoute from "./PrivateRoute";
 import IssueDetails from "../Pages/IssueDetails";
 import AddIssue from "../Pages/AddIssue";
 import MyIssues from "../Pages/MyIssues";
@@ -80,8 +80,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path : '*',
-  //   Component : NotFound
-  // }
+  {
+    path : '*',
+    Component : NotFound
+  }
 ]);

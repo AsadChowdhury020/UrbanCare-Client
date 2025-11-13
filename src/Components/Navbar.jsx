@@ -1,49 +1,55 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaClipboardList, FaFileAlt, FaListAlt, FaTimes } from "react-icons/fa";
 import { AuthContext } from "../Context/AuthContext";
 import logo from "../assets/Logo.png";
+import Swal from "sweetalert2";
+import { IoAddCircle, IoHomeOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-   useEffect(() => {
+  useEffect(() => {
     const html = document.querySelector("html");
     html.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-
   const handleTheme = (checked) => {
     setTheme(checked ? "dark" : "light");
   };
 
+  // const navLinkClass = ({ isActive }) =>
+  //   isActive
+  //     ? "text-green-600 font-semibold border-b-2 border-green-600"
+  //     : "text-gray-700 dark:text-gray-200 hover:text-green-600";
 
   const navLinkClass = ({ isActive }) =>
-    isActive
-      ? "text-green-600 font-semibold border-b-2 border-green-600"
-      : "text-gray-700 dark:text-gray-200 hover:text-green-600";
+  isActive
+    ? "flex justify-between items-center gap-1 bg-green-600 text-white font-semibold px-3 py-2 rounded-md"
+    : "flex justify-between items-center gap-1 text-gray-700 dark:text-gray-200 hover:text-green-600 px-3 py-2 rounded-md";
+
 
   const links = (
     <>
       <NavLink to="/" className={navLinkClass}>
-        Home
+       <IoHomeOutline /> Home
       </NavLink>
       <NavLink to="/all-issues" className={navLinkClass}>
-        All Issues
+       <FaListAlt /> All Issues
       </NavLink>
       {user && (
         <>
           <NavLink to="/add-issue" className={navLinkClass}>
-            Add Issue
+           <IoAddCircle /> Add Issue
           </NavLink>
           <NavLink to="/my-issues" className={navLinkClass}>
-            My Issues
+           <FaClipboardList />  My Issues
           </NavLink>
           <NavLink to="/my-contributions" className={navLinkClass}>
-            My Contribution
+           <FaFileAlt /> My Contribution
           </NavLink>
         </>
       )}
@@ -60,7 +66,15 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logOut()
-      .then(() => console.log("User logged out"))
+      .then(() => {
+        // console.log("User logged out")
+        Swal.fire({
+          icon: "success",
+          title: "Logout successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
       .catch((err) => console.error(err));
   };
 
@@ -132,7 +146,7 @@ const Navbar = () => {
 
           {/* Theme toggling button  */}
           <input
-             onChange={(e) => handleTheme(e.target.checked)}
+            onChange={(e) => handleTheme(e.target.checked)}
             type="checkbox"
             defaultChecked={localStorage.getItem("theme") === "dark"}
             className="toggle"

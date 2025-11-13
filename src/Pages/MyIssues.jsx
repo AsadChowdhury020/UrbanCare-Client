@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import LoadingSpinner from "../Components/LoadingSpinner";
-import IssueCard from "./IssueCard";
+import MyIssueCard from "./MyIssueCard";
 import { Helmet } from "react-helmet";
 
 const MyIssues = () => {
@@ -9,9 +9,14 @@ const MyIssues = () => {
   const [myIssues, setMyIssues] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const fetchIssues = () => {
     if (user?.email) {
-      fetch(`http://localhost:3000/issues?email=${user.email}`)
+      // fetch(`https://urban-care-server.vercel.app/issues?email=${user.email}`)
+      fetch(`https://urban-care-server.vercel.app/issues?email=${user.email}`, {
+        headers: {
+          authorization: `Bearer ${user?.accessToken}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           setMyIssues(data);
@@ -22,6 +27,10 @@ const MyIssues = () => {
           setLoading(false);
         });
     }
+  };
+
+  useEffect(() => {
+    fetchIssues();
   }, [user?.email]);
 
   if (loading) return <LoadingSpinner />;
@@ -43,7 +52,11 @@ const MyIssues = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {myIssues.map((issue) => (
-            <IssueCard key={issue._id || issue.title} issue={issue} />
+            <MyIssueCard
+              key={issue._id}
+              issue={issue}
+              refreshIssues={fetchIssues}
+            />
           ))}
         </div>
       )}

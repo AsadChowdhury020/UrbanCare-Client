@@ -16,7 +16,7 @@ const IssueDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/issues/${id}`)
+    fetch(`https://urban-care-server.vercel.app/issues/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setIssue(data);
@@ -24,7 +24,7 @@ const IssueDetails = () => {
       })
       .catch((err) => console.error(err));
 
-    fetch(`http://localhost:3000/contributions?issueId=${id}`)
+    fetch(`https://urban-care-server.vercel.app/contributions?issueId=${id}`)
       .then((res) => res.json())
       .then((data) => setContributors(data))
       .catch((err) => console.error(err));
@@ -45,7 +45,7 @@ const IssueDetails = () => {
       additionalInfo: form.info.value,
     };
 
-    fetch("http://localhost:3000/contributions", {
+    fetch("https://urban-care-server.vercel.app/contributions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(contribution),
@@ -123,11 +123,7 @@ const IssueDetails = () => {
       </div>
 
       {/* Contribution Modal */}
-      <dialog
-        id="payModal"
-        className="modal"
-        ref={contributionModalRef}
-      >
+      <dialog id="payModal" className="modal" ref={contributionModalRef}>
         <div className="modal-box max-w-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-xl shadow-lg transition-colors">
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-3 top-3">
@@ -236,4 +232,3 @@ const IssueDetails = () => {
 };
 
 export default IssueDetails;
-

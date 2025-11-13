@@ -104,6 +104,11 @@ const Login = () => {
         </form>
 
         <div className="text-center mt-4 text-gray-700 dark:text-gray-300">
+          {/* Forgot Password */}
+          <p className="mb-3 ">
+            <Link to="">Forgot your password?</Link>
+          </p>
+          {/* Register */}
           <p>
             Don’t have an account?{" "}
             <Link

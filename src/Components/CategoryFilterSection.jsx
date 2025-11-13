@@ -18,7 +18,7 @@
 // //   useEffect(() => {
 // //     const fetchIssues = async () => {
 // //       try {
-// //         const res = await fetch("http://localhost:3000/issues");
+// //         const res = await fetch("https://urban-care-server.vercel.app/issues");
 // //         const data = await res.json();
 // //         const formattedData = data.map((issue) => ({
 // //           ...issue,
@@ -93,8 +93,6 @@
 
 // // export default CategoryFilterSection;
 
-
-
 // import React, { useState, useEffect } from "react";
 // import IssueCard from "../Pages/IssueCard";
 // import LoadingSpinner from "./LoadingSpinner";
@@ -115,7 +113,7 @@
 //   useEffect(() => {
 //     const fetchIssues = async () => {
 //       try {
-//         const res = await fetch("http://localhost:3000/issues");
+//         const res = await fetch("https://urban-care-server.vercel.app/issues");
 //         const data = await res.json();
 //         const formattedData = data.map((issue) => ({
 //           ...issue,
@@ -211,7 +209,9 @@ const CategoryFilterSection = () => {
   useEffect(() => {
     const fetchIssues = async () => {
       try {
-        const res = await fetch("http://localhost:3000/issues");
+        const res = await fetch(
+          "https://urban-care-server.vercel.app/all-issues"
+        );
         const data = await res.json();
         const formattedData = data.map((issue) => ({
           ...issue,

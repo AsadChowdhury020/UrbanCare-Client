@@ -1,52 +1,37 @@
-import React from "react";;
-import logo from "../assets/Logo.png";
+import React from "react";
 import Slider from "../Pages/Slider";
 
 const Hero = () => {
   const slides = [
     {
       id: 1,
-      title: "Learn Skills Locally",
-      subtitle: "Connect with experts in your area and learn new skills.",
-      image: logo,
+      title: "Garbage",
+      subtitle:
+        "Report uncollected garbage or overflowing waste in your community.",
+      image: "https://i.ibb.co.com/d4z4GXDf/Garbage.jpg",
     },
     {
       id: 2,
-      title: "Teach Your Skills",
-      subtitle: "Share your knowledge and earn by teaching others.",
-      image: logo,
+      title: "Illegal Construction",
+      subtitle: "Report unauthorized or unsafe construction in public areas.",
+      image: "https://i.ibb.co.com/8Lgz3Sjp/Illegal-Construction.webp",
     },
     {
       id: 3,
-      title: "Trade & Exchange",
-      subtitle: "Swap skills with others in a fun and interactive way.",
-      image: logo,
+      title: "Broken Public Property",
+      subtitle:
+        "Report damaged benches, streetlights, or other public facilities.",
+      image: "https://i.ibb.co.com/xSFNywrS/Broken-Property.webp",
     },
     {
       id: 4,
-      title: "Build Your Portfolio",
-      subtitle: "Showcase your work and gain credibility in your skill area.",
-      image: logo,
-    },
-    {
-      id: 5,
-      title: "Find Local Mentors",
-      subtitle: "Get guidance from experienced providers near you.",
-      image: logo,
-    },
-    {
-      id: 6,
-      title: "Join Community Events",
-      subtitle: "Participate in workshops and skill-sharing events nearby.",
-      image: logo,
-    },
-    {
-      id: 7,
-      title: "Earn While Teaching",
-      subtitle: "Turn your skills into income by teaching others.",
-      image: logo,
+      title: "Road Damage",
+      subtitle: "Report potholes, cracks, or damaged roads needing repair.",
+      image:
+        "https://i.ibb.co.com/ZpqQ7cRf/Road-Damage.jpghttps://i.ibb.co.com/ZpqQ7cRf/Road-Damage.jpg",
     },
   ];
+
   return (
     <div className="">
       <Slider slides={slides}></Slider>

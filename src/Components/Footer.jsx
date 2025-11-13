@@ -1,7 +1,9 @@
 import React from "react";
 import { CiLocationOn } from "react-icons/ci";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import logo from '../assets/Logo.png'
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -10,7 +12,10 @@ const Footer = () => {
 
         {/*Logo & Short Description */}
         <div>
-          <h2 className="text-2xl font-bold text-green-600">UrbanCare</h2>
+          <div className="flex justify-start items-center">
+            <img className="w-12 h-12 rounded-full mr-2" src={logo} alt="" />
+            <h2 className="text-2xl font-bold text-green-600">UrbanCare</h2>
+          </div>
           <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
             Empowering communities to report, track, and resolve local 
             cleanliness and infrastructure issues — for a cleaner and greener tomorrow.
@@ -20,7 +25,7 @@ const Footer = () => {
               <FaFacebook size={20} />
             </a>
             <a href="#" className="hover:text-green-600 transition">
-              <FaTwitter size={20} />
+              <FaXTwitter size={20} />
             </a>
             <a href="#" className="hover:text-green-600 transition">
               <FaInstagram size={20} />

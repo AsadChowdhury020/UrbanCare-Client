@@ -11,7 +11,7 @@ The **Community Cleanliness & Issue Reporting Portal** is a full-stack **MERN** 
 
 ---
 
-#Key Features  
+# Key Features  
 
 - **Report Local Issues** — Users can easily submit cleanliness-related complaints such as garbage overflow, road damage, or illegal dumping.  
 - **Secure Authentication** — Firebase authentication (Email & Google login) ensures safe and private access to user-specific features.  
@@ -27,30 +27,31 @@ The **Community Cleanliness & Issue Reporting Portal** is a full-stack **MERN** 
 
 # Tech Stack  
 
-**Frontend:** React.js, Tailwind CSS, React Router, Firebase Auth, Axios  
-**Backend:** Node.js, Express.js, MongoDB, Mongoose  
-**Hosting:** Netlify (Client) & Vercel (Server)
+**Frontend:** React.js, Tailwind CSS, React Router, Firebase Auth, Axios 
+**Backend:** Node.js, Express.js, MongoDB
+**Hosting:** Firebase (Client) & Vercel (Server)
 
 ---
 
 # NPM Packages Used  
 
-#### Frontend  
+# Frontend  
 - `react-router` — Client-side routing  
 - `firebase` — Authentication system  
-- `axios` — API communication  
 - `sweetalert2` — Success/Error alerts  
 - `react-hook-form` — Form handling and validation  
 - `react-icons` — Icon library  
+- `react-hot-toast` — For lightweight toast notifications 
+- `swiper` — For creating responsive sliders and carousels   
+- `react-helmet` — For dynamic document titles and SEO 
 - `jspdf` & `jspdf-autotable` — PDF download for contribution reports  
 
-#### Backend  
+# Backend  
 - `express` — Backend framework  
 - `mongodb` — Database handling  
 - `cors` — Cross-origin resource sharing  
 - `dotenv` — Environment variable management  
 
----
 
 # Developer Instructions  
 
